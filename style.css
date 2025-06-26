@@ -1,20 +1,26 @@
-/* cursores personalizados */
-body {
-    cursor: url("img/cursor.cur"), auto;
+/* 1. Ocultar cursor nativo para usar el personalizado */
+body, a, button, .cursor-pointer {
+    cursor: none !important;
 }
 
-.cursor-pointer,
-a,
-button {
-    cursor: url("img/hand.cur"), pointer;
+/* 2. Cursor personalizado (siempre visible) */
+#customCursor {
+    position: fixed;
+    display: block;
+    width: 32px;
+    height: 32px;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.05s ease-out;
 }
 
-/* fuente base */
+/* 3. Fuente base */
 body {
     font-family: 'Poppins', sans-serif;
 }
 
-/* Loader Modal */
+/* 4. Loader Modal */
 #loaderModal {
     background: rgba(15, 23, 42, 0.95);
 }
@@ -25,7 +31,7 @@ body {
     background: linear-gradient(135deg, #FFC107, #FF6F00);
     border: 4px solid #FFD54F;
     border-radius: 1rem;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
     animation: fadeInBox 0.4s ease-out forwards;
     text-align: center;
 }
@@ -60,6 +66,58 @@ body {
     animation: barberScroll 1s linear infinite;
 }
 
+/* 5. Títulos principales */
+.titulo-principal {
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 0.03em;
+    background: linear-gradient(90deg, #ffffff, #c084fc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.titulo-hub {
+    font-family: 'Anton', sans-serif;
+    background: linear-gradient(90deg, #06b6d4, #7c3aed);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradientMove 3s ease infinite;
+}
+
+/* 6. Botón “En construcción” */
+.pulse {
+    animation: pulseSoft 2.5s ease-in-out infinite;
+}
+
+.bg-animated-hover {
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+}
+
+    .bg-animated-hover::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(120deg, #f59e0b, #ec4899, #8b5cf6, #06b6d4);
+        background-size: 400% 400%;
+        animation: gradientMoveHover 8s ease infinite;
+        opacity: 0;
+        z-index: -1;
+        transition: opacity 0.4s ease;
+    }
+
+    .bg-animated-hover:hover::before {
+        opacity: 1;
+    }
+
+/* 7. Animaciones */
 @keyframes fadeInBox {
     from {
         transform: scale(0.8);
@@ -120,34 +178,19 @@ body {
     }
 }
 
-.pulse {
-    animation: pulseSoft 2.5s ease-in-out infinite;
-}
-
-.bg-animated-hover {
-    position: relative;
-    z-index: 0;
-    overflow: hidden;
-}
-
-    .bg-animated-hover::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: linear-gradient(120deg, #f59e0b, #ec4899, #8b5cf6, #06b6d4);
-        background-size: 400% 400%;
-        animation: gradientMoveHover 8s ease infinite;
-        opacity: 0;
-        z-index: -1;
-        transition: opacity 0.4s ease;
+@keyframes gradientMove {
+    0% {
+        background-position: 0% center;
     }
 
-    .bg-animated-hover:hover::before {
-        opacity: 1;
+    50% {
+        background-position: 100% center;
     }
+
+    100% {
+        background-position: 0% center;
+    }
+}
 
 @keyframes gradientMoveHover {
     0% {
@@ -160,39 +203,5 @@ body {
 
     100% {
         background-position: 0% 50%;
-    }
-}
-
-.titulo-principal {
-    font-family: 'Poppins', sans-serif;
-    letter-spacing: 0.03em;
-    background: linear-gradient(90deg, #ffffff, #c084fc);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
-}
-
-.titulo-hub {
-    font-family: 'Anton', sans-serif;
-    background: linear-gradient(90deg, #06b6d4, #7c3aed);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: gradientMove 3s ease infinite;
-}
-
-@keyframes gradientMove {
-    0% {
-        background-position: 0% center;
-    }
-
-    50% {
-        background-position: 100% center;
-    }
-
-    100% {
-        background-position: 0% center;
     }
 }
